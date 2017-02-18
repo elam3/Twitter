@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BDBOAuth1Manager // added to handle the callBackURL
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    
+    /** In the OAuth handshake, the callBackURL comes home via the 'unique protocol' we created to handle i.e. mytwitterdemo://oauth,
+     *  we can call this function to capture the reponse.
+     */
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        print(url.description)
+        
+        let requestToken = BDBOAuth1Credential(queryString: url.query)
+        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com"), consumerKey: "EScjTh3gK34tM7zKV6ugLxK1B", consumerSecret: "457mghv1TwkSr6gHvUqyU2hYInIBuaotz6ngKOYb7jfx0aZCkX")
+        
+        
+        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) -> Void in
+            print("I got the access token!")
+            print("\(accessToken?.token)")
+            
+            
+            twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
+                print("Success verify credentials")
+                
+                //print("account: \(response)")
+                let user = response as? NSDictionary
+                
+                /*if let name: String = user["name"] {
+                    print("name: \(name)")
+                }*/
+                
+                print("name: \(user?["name"] ?? "")")
+                
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                print("Failed verify credentials")
+                print("error: \(error.localizedDescription)")
+            })
+            
+            
+            twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
+                print("Success got home timeline")
+                let timeline = response as? NSDictionary
+                
+                //print(response)
+                
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                print("Failed to get home timeline")
+                print("error: \(error.localizedDescription)")
+            })
+            
+            
+        }, failure: { (error: Error?) -> Void in
+            print("error: \(error?.localizedDescription)")
+        })
+        
+        return true
     }
 
 

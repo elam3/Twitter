@@ -34,6 +34,21 @@ class LoginViewController: UIViewController {
     */
     
     @IBAction func onLoginButton(_ sender: Any) {
+        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com"), consumerKey: "EScjTh3gK34tM7zKV6ugLxK1B", consumerSecret: "457mghv1TwkSr6gHvUqyU2hYInIBuaotz6ngKOYb7jfx0aZCkX")
+        
+        twitterClient?.deauthorize()
+        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitter://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
+            print("I got a token!")
+            print(requestToken?.token ?? "Bad requestToken")
+            let url = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken?.token ?? "")")!
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: { (true) in
+                print("Successfully opened url.")
+            })
+            
+        }, failure: { (error: Error?) -> Void in
+            print("error: \(error?.localizedDescription)")
+        })
+        
     }
 
 }
