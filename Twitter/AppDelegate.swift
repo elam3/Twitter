@@ -54,10 +54,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) -> Void in
+            
             print("I got the access token!")
             print("\(accessToken?.token)")
             
-            
+            // GET request to get User Profile Settings
             twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
                 print("Success verify credentials")
                 
@@ -76,6 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
             
             
+            // GET request to get home timeline
             twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
                 print("Success got home timeline")
                 let timeline = response as? NSDictionary
