@@ -55,21 +55,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) -> Void in
             
-            print("I got the access token!")
+            print("\nI got the access token!")
             print("\(accessToken?.token)")
             
             // GET request to get User Profile Settings
             twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
-                print("Success verify credentials")
+                print("\nSuccess verify credentials\n")
                 
                 //print("account: \(response)")
-                let user = response as? NSDictionary
+                let userDictionary = response as? NSDictionary
                 
-                /*if let name: String = user["name"] {
-                    print("name: \(name)")
-                }*/
+                let user = User(dictionary: userDictionary!)
                 
-                print("name: \(user?["name"] ?? "")")
+                print("name: \(user.name ?? "")")
+                print("screenname: \(user.screenname ?? "")")
+                print("profile url: \(user.profileUrl)")
+                print("description: \(user.tagline ?? "")")
                 
             }, failure: { (task: URLSessionDataTask?, error: Error) in
                 print("Failed verify credentials")
