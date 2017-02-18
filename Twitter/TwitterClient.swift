@@ -101,7 +101,18 @@ class TwitterClient: BDBOAuth1SessionManager {
         
         self.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) -> Void in
             
-            self.loginSuccess?()
+            self.currentAccount(success: { (user: User) in
+                
+                // call the setter & saves the user
+                User.currentUser = user
+                self.loginSuccess?()
+                print("loginSuccess?()")
+                
+            }, failure: { (error: Error) in
+                
+                self.loginFailure?(error)
+                
+            })
             
             //print("\nI got the access token!")
             //print("\(accessToken?.token)")

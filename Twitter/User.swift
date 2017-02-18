@@ -15,6 +15,9 @@ class User: NSObject {
     var profileUrl: NSURL?
     var tagline: NSString?
     
+    // serialize user data back into a JSON for persistance
+    var dictionary: NSDictionary?
+    
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String as NSString?
         screenname = dictionary["screen_name"] as? String as NSString?
@@ -27,6 +30,43 @@ class User: NSObject {
             profileUrl = NSURL(string: "")
         }
 
+    }
+    
+    /** login persistance
+     *  the static variable, _currentUser, serves as a placeholder
+     */
+    static var _currentUser: User?
+    
+    class var currentUser: User? {
+        get {
+            if _currentUser == nil {
+                // make a UserDefaults, i.e. the "browser cookie" for apps
+                let defaults = UserDefaults.standard
+                let userData = defaults.object(forKey: "currentUserData") as? Data
+            
+                if let userData = userData {
+                    let dictionary = try! JSONSerialization.jsonObject(with: userData as Data, options: [])
+                    _currentUser = User(dictionary: dictionary as! NSDictionary)
+                }
+            }
+            
+            return _currentUser
+            
+        }
+        
+        set(user) {
+            _currentUser = user
+            let defaults = UserDefaults.standard
+            
+            if let user = user {
+                let data = try! JSONSerialization.data(withJSONObject: user.dictionary ?? [], options: [])
+                defaults.set(data, forKey: "currentUserData")
+            } else {
+                defaults.set(nil, forKey: "currentUserData")
+            }
+            
+            defaults.synchronize()
+        }
     }
     
 }
