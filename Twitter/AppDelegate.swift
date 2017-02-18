@@ -59,37 +59,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("\(accessToken?.token)")
             
             // GET request to get User Profile Settings
-            twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
-                print("\nSuccess verify credentials\n")
-                
-                //print("account: \(response)")
-                let userDictionary = response as? NSDictionary
-                
-                let user = User(dictionary: userDictionary!)
-                
-                print("name: \(user.name ?? "")")
-                print("screenname: \(user.screenname ?? "")")
-                print("profile url: \(user.profileUrl)")
-                print("description: \(user.tagline ?? "")")
-                
-            }, failure: { (task: URLSessionDataTask?, error: Error) in
-                print("Failed verify credentials")
-                print("error: \(error.localizedDescription)")
-            })
-            
+            twitterClient?.currentAccount()
             
             // GET request to get home timeline
-            twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
-                print("Success got home timeline")
-                let dictionaries = response as! [NSDictionary]
-                
-                let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
-                
+            twitterClient?.homeTimeline(success: { (tweets: [Tweet]) in
                 for tweet in tweets {
                     print("\(tweet.text ?? "")")
                 }
-                
-            }, failure: { (task: URLSessionDataTask?, error: Error) in
+            }, failure: { (error: Error) in
                 print("Failed to get home timeline")
                 print("error: \(error.localizedDescription)")
             })
