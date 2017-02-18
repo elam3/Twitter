@@ -19,6 +19,8 @@ class User: NSObject {
     var dictionary: NSDictionary?
     
     init(dictionary: NSDictionary) {
+        self.dictionary = dictionary
+        
         name = dictionary["name"] as? String as NSString?
         screenname = dictionary["screen_name"] as? String as NSString?
         tagline = dictionary["description"] as? String as NSString?
@@ -39,26 +41,22 @@ class User: NSObject {
     
     class var currentUser: User? {
         get {
-            if _currentUser == nil {
-                // make a UserDefaults, i.e. the "browser cookie" for apps
-                let defaults = UserDefaults.standard
-                let userData = defaults.object(forKey: "currentUserData") as? Data
+            // make a UserDefaults, i.e. the "browser cookie" for apps
+            let defaults = UserDefaults.standard
+            let userData = defaults.object(forKey: "currentUserData") as? Data
             
-                if let userData = userData {
-                    let dictionary = try! JSONSerialization.jsonObject(with: userData as Data, options: [])
-                    _currentUser = User(dictionary: dictionary as! NSDictionary)
-                }
+            if let userData = userData {
+                //let dictionary = try! JSONSerialization.jsonObject(with: userData as Data, options: [])
+                //_currentUser = User(dictionary: dictionary as! NSDictionary)
             }
-            
             return _currentUser
-            
         }
         
         set(user) {
             _currentUser = user
             let defaults = UserDefaults.standard
             
-            if let user = user {
+            if let user = _currentUser {
                 let data = try! JSONSerialization.data(withJSONObject: user.dictionary ?? [], options: [])
                 defaults.set(data, forKey: "currentUserData")
             } else {
