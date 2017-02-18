@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
     // 00. wire an action from a button on storyboard
     @IBAction func onLoginButton(_ sender: Any) {
         // 1. create a session
-        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com"), consumerKey: "EScjTh3gK34tM7zKV6ugLxK1B", consumerSecret: "457mghv1TwkSr6gHvUqyU2hYInIBuaotz6ngKOYb7jfx0aZCkX")
+        let twitterClient = TwitterClient.sharedInstance
         
         // BDBOAuth1Manager was reported to be buggy
         // calling deauthorize() prior to requests is a workaround to flush out prior sessions
