@@ -69,10 +69,50 @@
                             <constraint firstItem="eSq-hk-3tI" firstAttribute="top" secondItem="m7A-Ae-sSa" secondAttribute="bottom" constant="40" id="wmL-nf-gKg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="4np-4Y-1PI" kind="presentation" identifier="loginSegue" id="3qk-uo-YBO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="c0S-BP-yAI">
+            <objects>
+                <viewController id="b4B-Ga-m4W" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eIE-d0-Twy"/>
+                        <viewControllerLayoutGuide type="bottom" id="eBZ-z2-wN4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G2R-sq-2iu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EJq-jw-FW9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4gW-dt-sI7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1567" y="139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gXf-JJ-w01">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4np-4Y-1PI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="983-9z-yrO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="b4B-Ga-m4W" kind="relationship" relationship="rootViewController" id="PWy-IB-F9o"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="udC-ew-LJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="832.79999999999995" y="138.98050974512745"/>
         </scene>
     </scenes>
     <resources>

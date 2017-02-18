@@ -28,7 +28,12 @@ class LoginViewController: UIViewController {
         let twitterClient = TwitterClient.sharedInstance
         
         twitterClient?.login(success: { 
-            print("Successfully logged in!")
+            //print("Successfully logged in!")
+            
+            // After creating an embedded navigation,
+            // and hooking the login nav controller to the new view controller in modal presentation
+            // we want to segueway to the home timeline
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
         }, failure: { (error: Error) in
             print("error: \(error.localizedDescription)")
         })
