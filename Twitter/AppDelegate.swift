@@ -81,9 +81,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // GET request to get home timeline
             twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
                 print("Success got home timeline")
-                let timeline = response as? NSDictionary
+                let dictionaries = response as! [NSDictionary]
                 
-                //print(response)
+                let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
+                
+                for tweet in tweets {
+                    print("\(tweet.text ?? "")")
+                }
                 
             }, failure: { (task: URLSessionDataTask?, error: Error) in
                 print("Failed to get home timeline")
