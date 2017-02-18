@@ -27,27 +27,13 @@ class LoginViewController: UIViewController {
         // 1. create a session
         let twitterClient = TwitterClient.sharedInstance
         
-        // BDBOAuth1Manager was reported to be buggy
-        // calling deauthorize() prior to requests is a workaround to flush out prior sessions
-        twitterClient?.deauthorize()
-        
-        // 2. request a token
-        // callbackURL twitter://oauth is something we define, the "URL Scheme"
-        // it's defined at the Project overview, using the "Bundle Identifier" and defining at the "Info" Tab
-        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitter://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
-            print("I got a token!")
-            print(requestToken?.token ?? "Bad requestToken")
-            let url = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken?.token ?? "")")!
-            
-            // 3. open the url in browser to authenticate
-            UIApplication.shared.open(url as URL, options: [:], completionHandler: { (true) in
-                print("Successfully opened url.")
-            })
-            
-        }, failure: { (error: Error?) -> Void in
-            print("Failed to get request token")
-            print("error: \(error?.localizedDescription)")
+        twitterClient?.login(success: { 
+            print("Successfully logged in!")
+        }, failure: { (error: Error) in
+            print("error: \(error.localizedDescription)")
         })
+        
+
         
     }
     

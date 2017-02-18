@@ -47,43 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      *  we can call this function to capture the reponse.
      */
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        print(url.description)
         
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
         let twitterClient = TwitterClient.sharedInstance
-        
-        
-        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) -> Void in
-            
-            print("\nI got the access token!")
-            print("\(accessToken?.token)")
-            
-            // GET request to get User Profile Settings
-            twitterClient?.currentAccount(success: { (user: User) in
-                print("name: \(user.name ?? "")")
-                print("screenname: \(user.screenname ?? "")")
-                print("profile url: \(user.profileUrl)")
-                print("description: \(user.tagline ?? "")")
-            }, failure: { (error: Error) in
-                print("Failed verify credentials")
-                print("error: \(error.localizedDescription)")
-            })
-            
-            
-            // GET request to get home timeline
-            twitterClient?.homeTimeline(success: { (tweets: [Tweet]) in
-                for tweet in tweets {
-                    print("\(tweet.text ?? "")")
-                }
-            }, failure: { (error: Error) in
-                print("Failed to get home timeline")
-                print("error: \(error.localizedDescription)")
-            })
-            
-            
-        }, failure: { (error: Error?) -> Void in
-            print("error: \(error?.localizedDescription)")
-        })
+        twitterClient?.handleOpenUrl(url: url)
         
         return true
     }
