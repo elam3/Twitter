@@ -59,7 +59,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("\(accessToken?.token)")
             
             // GET request to get User Profile Settings
-            twitterClient?.currentAccount()
+            twitterClient?.currentAccount(success: { (user: User) in
+                print("name: \(user.name ?? "")")
+                print("screenname: \(user.screenname ?? "")")
+                print("profile url: \(user.profileUrl)")
+                print("description: \(user.tagline ?? "")")
+            }, failure: { (error: Error) in
+                print("Failed verify credentials")
+                print("error: \(error.localizedDescription)")
+            })
+            
             
             // GET request to get home timeline
             twitterClient?.homeTimeline(success: { (tweets: [Tweet]) in

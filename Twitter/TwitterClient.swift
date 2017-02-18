@@ -36,7 +36,8 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func currentAccount() {
+    // Refactor to use closures
+    func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         // GET request to get User Profile Settings
         self.get("1.1/account/verify_credentials.json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
             print("\nSuccess verify credentials\n")
@@ -46,14 +47,10 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             let user = User(dictionary: userDictionary!)
             
-            print("name: \(user.name ?? "")")
-            print("screenname: \(user.screenname ?? "")")
-            print("profile url: \(user.profileUrl)")
-            print("description: \(user.tagline ?? "")")
+            success(user)
             
         }, failure: { (task: URLSessionDataTask?, error: Error) in
-            print("Failed verify credentials")
-            print("error: \(error.localizedDescription)")
+            failure(error)
         })
     }
     
