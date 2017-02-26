@@ -8,20 +8,34 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     var tweets: [Tweet]! = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Loading TweetsViewController")
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 150
+        
         // GET request to get home timeline
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             self.tweets = tweets
+            print("Got the home timeline")
             
-            for tweet in tweets {
+            /*for tweet in tweets {
                 print("\(tweet.text ?? "")")
-            }
+            }*/
+            
+            self.tableView.reloadData()
+            
         }, failure: { (error: Error) in
             print("Failed to get home timeline")
             print("error: \(error.localizedDescription)")
@@ -30,6 +44,21 @@ class TweetsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tweets != nil {
+            return tweets.count
+        } else {
+            return 0
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
+        cell.tweet = tweets[indexPath.row]
+        return cell
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
