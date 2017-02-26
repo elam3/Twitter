@@ -32,7 +32,7 @@ class TweetCell: UITableViewCell {
             
             nameLabel.text = tweet.name
             screen_nameLabel.text = "@\(tweet.screen_name!)"
-            timestampLabel.text = "\u{B7} \(tweet.timestamp!)"
+            timestampLabel.text = "\u{B7} \(tweet.timestampString!)"
             tweetLabel.text = tweet.text
             
             replyCountLabel.text = tweet.replyCount==0 ? "" : "\(tweet.replyCount)"

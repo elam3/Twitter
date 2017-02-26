@@ -11,7 +11,8 @@ import UIKit
 class Tweet: NSObject {
     let user: NSObject?
     let text: String?
-    var timestamp: String?
+    var timestamp: Date?
+    var timestampString: String?
     let profileImageUrl: URL?
     let name: String?
     let screen_name: String?
@@ -38,13 +39,10 @@ class Tweet: NSObject {
         retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
         favoritesCount = (dictionary["favourites_count"] as? Int) ?? 0
         
-        let timeStampString = dictionary["created_at"] as? String
-        timestamp = timeStampString
-        /*if let timeStampString = timeStampString {
-            let formatter = DateFormatter()
-            formatter.setLocalizedDateFormatFromTemplate("EEE MMM d HH:mm:ss Z y")
-            timestamp = formatter.string(from: formatter.date(from: timeStampString)!)
-        }*/
+        let myFormatter = DateFormatter()
+        timestampString = dictionary["created_at"] as? String        
+        timestamp = myFormatter.date(from: timestampString!)
+
         
     }
     
