@@ -184,7 +184,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gXf-JJ-w01">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4np-4Y-1PI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="4np-4Y-1PI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="983-9z-yrO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

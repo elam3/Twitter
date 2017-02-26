@@ -20,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if User.currentUser != nil {
             print("There is a current user")
+            
+            // Skip LoginViewController if a current user exists
+            // Step 0. give NavigationController a storyboard ID
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewCtrlr = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+            window?.rootViewController = viewCtrlr
         } else {
             print("There is no current user")
         }

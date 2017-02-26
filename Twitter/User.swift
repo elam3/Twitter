@@ -31,7 +31,6 @@ class User: NSObject {
         } else {
             profileUrl = NSURL(string: "")
         }
-
     }
     
     /** login persistance
@@ -46,9 +45,14 @@ class User: NSObject {
             let userData = defaults.object(forKey: "currentUserData") as? Data
             
             if let userData = userData {
-                //let dictionary = try! JSONSerialization.jsonObject(with: userData as Data, options: [])
-                //_currentUser = User(dictionary: dictionary as! NSDictionary)
+                if let dict = try! JSONSerialization.jsonObject(with: userData as Data, options: []) as? NSDictionary {
+                    _currentUser = User(dictionary: dict)
+                    print("userCurrentData RETRIEVED!")
+                } else {
+                    _currentUser = nil
+                }
             }
+            
             return _currentUser
         }
         
@@ -59,8 +63,10 @@ class User: NSObject {
             if let user = _currentUser {
                 let data = try! JSONSerialization.data(withJSONObject: user.dictionary ?? [], options: [])
                 defaults.set(data, forKey: "currentUserData")
+                print("currentUserData SAVED!")
             } else {
                 defaults.set(nil, forKey: "currentUserData")
+                print("currentUserData RESET to nil!")
             }
             
             defaults.synchronize()
