@@ -48,22 +48,24 @@ class TweetCell: UITableViewCell {
     
     
     
-    func toggleRetweet(_ flag: Bool) {
+    func toggleRetweet(_ flag: Bool, isPost: Bool = false) {
         tweet.isRetweeted = flag
         
         if (flag) {
             retweetedButton.setBackgroundImage(#imageLiteral(resourceName: "retweet-icon-green"), for: UIControlState.normal)
             tweet.retweetCount += 1
             retweetCountLabel.text = "\(tweet.retweetCount)"
+            if (isPost) { TwitterClient.sharedInstance?.statusRetweet(tweet.id_str!) }
         } else {
             retweetedButton.setBackgroundImage(#imageLiteral(resourceName: "retweet-icon"), for: UIControlState.normal)
             tweet.retweetCount = tweet.retweetCount==0 ? 0 : tweet.retweetCount - 1
             retweetCountLabel.text = tweet.retweetCount==0 ? "" : "\(tweet.retweetCount)"
+            if (isPost) { TwitterClient.sharedInstance?.statusUnretweet(tweet.id_str!) }
         }
     }
     
     @IBAction func onRetweetBtnPressed(_ sender: Any) {
-        toggleRetweet(!tweet.isRetweeted)
+        toggleRetweet(!tweet.isRetweeted, isPost:true)
     }
     
     func toggleFavorited(_ flag: Bool, isPost: Bool = false) {

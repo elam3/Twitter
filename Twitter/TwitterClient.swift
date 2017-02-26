@@ -85,6 +85,32 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    /** Retweets a tweet. Returns the original tweet with retweet details embedded.
+     *  https://dev.twitter.com/rest/reference/post/statuses/retweet/%3Aid
+     *  Resource URL :          https://api.twitter.com/1.1/statuses/retweet/:id.json
+     *  Example Request : POST  https://api.twitter.com/1.1/statuses/retweet/243149503589400576.json
+     */
+    func statusRetweet(_ id_str: String) {
+        self.post("1.1/statuses/retweet/"+id_str+".json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
+            print("Re-Tweet post id: " + id_str)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            print("Re-Tweet error: \(error.localizedDescription)")
+        })
+    }
+    
+    /** Untweets a retweeted status. Returns the original Tweet with retweet details embedded.
+     *  https://dev.twitter.com/rest/reference/post/statuses/unretweet/id
+     *  Resource URL :          https://api.twitter.com/1.1/statuses/unretweet/:id.json
+     *  Example Request : POST  https://api.twitter.com/1.1/statuses/retweet/241259202004267009.json
+     */
+    func statusUnretweet(_ id_str: String) {
+        self.post("1.1/statuses/unretweet/"+id_str+".json", parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
+            print("Un-Retweet post id: " + id_str)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            print("Un-Retweet error: \(error.localizedDescription)")
+        })
+    }
+    
     
     /** Refactor login portion between LoginViewController & AppDelegate
      *
