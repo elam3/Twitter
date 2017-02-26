@@ -26,8 +26,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewCtrlr = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
             window?.rootViewController = viewCtrlr
+            // Part 2 of logout routine, NotificationCenter
+            // post to a handleName on TweetsViewController telling NotificationCenter about the logout event
+            
+            
         } else {
             print("There is no current user")
+        }
+        
+        // Set up an observer to detect logout events posted by the TweetsViewController
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "UserDidLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewCtrlr = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = viewCtrlr
         }
         
         return true
