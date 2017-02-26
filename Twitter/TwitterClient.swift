@@ -94,6 +94,12 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    /** onLogoutBtn from TweetsViewController triggers an button pressed action to call this method */
+    func logout() {
+        deauthorize()
+        User.currentUser = nil
+    }
+    
     
     /** AppDelegate receives callBackURL and invokes this method to finish the login process */
     func handleOpenUrl(url: URL) {

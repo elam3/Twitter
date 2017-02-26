@@ -172,7 +172,13 @@
                             <constraint firstItem="qfc-YH-P9n" firstAttribute="leading" secondItem="G2R-sq-2iu" secondAttribute="leading" id="q6h-3W-X7z"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="EJq-jw-FW9"/>
+                    <navigationItem key="navigationItem" title="Home" id="EJq-jw-FW9">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="1fX-nw-Qq3">
+                            <connections>
+                                <action selector="onLogoutBtn:" destination="b4B-Ga-m4W" id="cPV-g2-pcy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="qfc-YH-P9n" id="59I-TR-0FY"/>
                     </connections>
