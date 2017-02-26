@@ -154,6 +154,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ugb-7F-Ysj">
                                                     <rect key="frame" x="198" y="91.5" width="20" height="20"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="favoritedButton"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="wtB-Tl-1H7"/>
                                                         <constraint firstAttribute="width" constant="20" id="xPq-gw-FsX"/>
@@ -165,6 +166,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aJ-l3-qRa">
                                                     <rect key="frame" x="129" y="91.5" width="20" height="20"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="retweetedButton"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="P5U-uR-PmZ"/>
                                                         <constraint firstAttribute="width" constant="20" id="XsV-mc-paz"/>
