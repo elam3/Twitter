@@ -159,6 +159,9 @@
                                                         <constraint firstAttribute="width" constant="20" id="xPq-gw-FsX"/>
                                                     </constraints>
                                                     <state key="normal" title="" backgroundImage="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="onFavBtnPressed:" destination="b4B-Ga-m4W" eventType="touchUpInside" id="wNK-GP-dP9"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aJ-l3-qRa">
                                                     <rect key="frame" x="129" y="91.5" width="20" height="20"/>
@@ -167,6 +170,9 @@
                                                         <constraint firstAttribute="width" constant="20" id="XsV-mc-paz"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="retweet-icon"/>
+                                                    <connections>
+                                                        <action selector="onRetweetBtnPressed:" destination="b4B-Ga-m4W" eventType="touchUpInside" id="7bF-8i-MWQ"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yad-s4-9Qf">
                                                     <rect key="frame" x="60" y="91.5" width="20" height="20"/>
@@ -175,6 +181,9 @@
                                                         <constraint firstAttribute="height" constant="20" id="p0p-Fa-ke6"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="reply-icon"/>
+                                                    <connections>
+                                                        <action selector="onReplyBtnPressed:" destination="b4B-Ga-m4W" eventType="touchUpInside" id="JGT-jg-AJd"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -212,8 +221,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favCountLabel" destination="8OT-jI-cBc" id="tbN-ik-oYw"/>
                                             <outlet property="nameLabel" destination="rNF-cW-JcM" id="SJN-Z9-Sn6"/>
                                             <outlet property="profileImageView" destination="0dT-aY-ivg" id="HXs-1O-Rxg"/>
+                                            <outlet property="replyCountLabel" destination="BbQ-Q9-P09" id="2F2-uj-20Q"/>
+                                            <outlet property="retweetCountLabel" destination="s1y-b4-Dki" id="N5j-Vt-hc6"/>
                                             <outlet property="screen_nameLabel" destination="Hfo-aA-SP9" id="FLM-7G-Mhy"/>
                                             <outlet property="timestampLabel" destination="Z7j-OQ-veq" id="Q52-KG-00o"/>
                                             <outlet property="tweetLabel" destination="kDY-bg-ins" id="Qos-fK-k0Y"/>

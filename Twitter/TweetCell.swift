@@ -14,6 +14,9 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var screen_nameLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
+    @IBOutlet weak var replyCountLabel: UILabel!
+    @IBOutlet weak var retweetCountLabel: UILabel!
+    @IBOutlet weak var favCountLabel: UILabel!
     
     var profileImageUrlString: String?
     
@@ -31,6 +34,10 @@ class TweetCell: UITableViewCell {
             screen_nameLabel.text = "@\(tweet.screen_name!)"
             timestampLabel.text = "\u{B7} \(tweet.timestamp!)"
             tweetLabel.text = tweet.text
+            
+            replyCountLabel.text = tweet.replyCount==0 ? "" : "\(tweet.replyCount)"
+            retweetCountLabel.text = tweet.retweetCount==0 ? "" : "\(tweet.retweetCount)"
+            favCountLabel.text = tweet.favoritesCount==0 ? "" : "\(tweet.favoritesCount)"
         }
     }
     

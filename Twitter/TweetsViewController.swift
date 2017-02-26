@@ -69,6 +69,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         TwitterClient.sharedInstance?.logout()
     }
 
+    @IBAction func onReplyBtnPressed(_ sender: Any) {
+    }
+    
+    @IBAction func onRetweetBtnPressed(_ sender: Any) {
+    }
+    
+    @IBAction func onFavBtnPressed(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 
