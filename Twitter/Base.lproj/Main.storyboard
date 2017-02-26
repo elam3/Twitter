@@ -161,7 +161,7 @@
                                                     </constraints>
                                                     <state key="normal" title="" backgroundImage="favor-icon"/>
                                                     <connections>
-                                                        <action selector="onFavBtnPressed:" destination="b4B-Ga-m4W" eventType="touchUpInside" id="wNK-GP-dP9"/>
+                                                        <action selector="onFavBtnPressed:" destination="yJq-8F-R8o" eventType="touchUpInside" id="Aow-2I-Krh"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aJ-l3-qRa">
@@ -173,7 +173,7 @@
                                                     </constraints>
                                                     <state key="normal" backgroundImage="retweet-icon"/>
                                                     <connections>
-                                                        <action selector="onRetweetBtnPressed:" destination="b4B-Ga-m4W" eventType="touchUpInside" id="7bF-8i-MWQ"/>
+                                                        <action selector="onRetweetBtnPressed:" destination="yJq-8F-R8o" eventType="touchUpInside" id="r97-WY-HrT"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yad-s4-9Qf">
@@ -224,10 +224,12 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="favCountLabel" destination="8OT-jI-cBc" id="tbN-ik-oYw"/>
+                                            <outlet property="favoritedButton" destination="Ugb-7F-Ysj" id="dsm-EB-b6r"/>
                                             <outlet property="nameLabel" destination="rNF-cW-JcM" id="SJN-Z9-Sn6"/>
                                             <outlet property="profileImageView" destination="0dT-aY-ivg" id="HXs-1O-Rxg"/>
                                             <outlet property="replyCountLabel" destination="BbQ-Q9-P09" id="2F2-uj-20Q"/>
                                             <outlet property="retweetCountLabel" destination="s1y-b4-Dki" id="N5j-Vt-hc6"/>
+                                            <outlet property="retweetedButton" destination="0aJ-l3-qRa" id="EEt-7o-36x"/>
                                             <outlet property="screen_nameLabel" destination="Hfo-aA-SP9" id="FLM-7G-Mhy"/>
                                             <outlet property="timestampLabel" destination="Z7j-OQ-veq" id="Q52-KG-00o"/>
                                             <outlet property="tweetLabel" destination="kDY-bg-ins" id="Qos-fK-k0Y"/>
@@ -247,7 +249,7 @@
                     <navigationItem key="navigationItem" title="Home" id="EJq-jw-FW9">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="1fX-nw-Qq3">
                             <connections>
-                                <action selector="onLogoutBtn:" destination="b4B-Ga-m4W" id="cPV-g2-pcy"/>
+                                <action selector="onLogoutButtonPressed:" destination="b4B-Ga-m4W" id="Dtm-O9-45P"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

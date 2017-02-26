@@ -64,19 +64,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func onLogoutBtn(_ sender: Any) {
+    @IBAction func onLogoutButtonPressed(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
     }
-
+    
     @IBAction func onReplyBtnPressed(_ sender: Any) {
     }
     
-    @IBAction func onRetweetBtnPressed(_ sender: Any) {
-    }
-    
-    @IBAction func onFavBtnPressed(_ sender: Any) {
-    }
     /*
     // MARK: - Navigation
 

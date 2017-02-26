@@ -17,6 +17,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var replyCountLabel: UILabel!
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var favCountLabel: UILabel!
+    @IBOutlet weak var retweetedButton: UIButton!
+    @IBOutlet weak var favoritedButton: UIButton!
     
     var profileImageUrlString: String?
     
@@ -38,7 +40,48 @@ class TweetCell: UITableViewCell {
             replyCountLabel.text = tweet.replyCount==0 ? "" : "\(tweet.replyCount)"
             retweetCountLabel.text = tweet.retweetCount==0 ? "" : "\(tweet.retweetCount)"
             favCountLabel.text = tweet.favoritesCount==0 ? "" : "\(tweet.favoritesCount)"
+            
+            toggleRetweet(tweet.isRetweeted)
+            toggleFavorited(tweet.isFavorited)
         }
+    }
+    
+    
+    
+    func toggleRetweet(_ flag: Bool) {
+        tweet.isRetweeted = flag
+        
+        if (flag) {
+            retweetedButton.setBackgroundImage(#imageLiteral(resourceName: "retweet-icon-green"), for: UIControlState.normal)
+            tweet.retweetCount += 1
+            retweetCountLabel.text = "\(tweet.retweetCount)"
+        } else {
+            retweetedButton.setBackgroundImage(#imageLiteral(resourceName: "retweet-icon"), for: UIControlState.normal)
+            tweet.retweetCount = tweet.retweetCount==0 ? 0 : tweet.retweetCount - 1
+            retweetCountLabel.text = tweet.retweetCount==0 ? "" : "\(tweet.retweetCount)"
+        }
+    }
+    
+    @IBAction func onRetweetBtnPressed(_ sender: Any) {
+        toggleRetweet(!tweet.isRetweeted)
+    }
+    
+    func toggleFavorited(_ flag: Bool) {
+        tweet.isFavorited = flag
+        
+        if (flag) {
+            favoritedButton.setBackgroundImage(#imageLiteral(resourceName: "favor-icon-red"), for: UIControlState.normal)
+            tweet.favoritesCount += 1
+            favCountLabel.text = "\(tweet.favoritesCount)"
+        } else {
+            favoritedButton.setBackgroundImage(#imageLiteral(resourceName: "favor-icon"), for: UIControlState.normal)
+            tweet.favoritesCount = tweet.favoritesCount==0 ? 0 : tweet.favoritesCount - 1
+            favCountLabel.text = tweet.favoritesCount==0 ? "" : "\(tweet.favoritesCount)"
+        }
+    }
+    
+    @IBAction func onFavBtnPressed(_ sender: Any) {
+        toggleFavorited(!tweet.isFavorited)
     }
     
     override func awakeFromNib() {
