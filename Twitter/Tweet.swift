@@ -9,6 +9,7 @@
 import UIKit
 
 class Tweet: NSObject {
+    var id_str: String?
     let user: NSObject?
     let text: String?
     var timestamp: Date?
@@ -25,6 +26,7 @@ class Tweet: NSObject {
     var isFavorited: Bool
     
     init(dictionary: [String: AnyObject]) {
+        id_str = dictionary["id_str"] as? String
         text = dictionary["text"] as? String
         user = dictionary["user"] as! NSDictionary
         name = dictionary["user"]?["name"] as? String

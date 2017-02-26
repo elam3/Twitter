@@ -66,22 +66,24 @@ class TweetCell: UITableViewCell {
         toggleRetweet(!tweet.isRetweeted)
     }
     
-    func toggleFavorited(_ flag: Bool) {
+    func toggleFavorited(_ flag: Bool, isPost: Bool = false) {
         tweet.isFavorited = flag
         
         if (flag) {
             favoritedButton.setBackgroundImage(#imageLiteral(resourceName: "favor-icon-red"), for: UIControlState.normal)
             tweet.favoritesCount += 1
             favCountLabel.text = "\(tweet.favoritesCount)"
+            if (isPost) {TwitterClient.sharedInstance?.favoritesCreate(tweet.id_str!)}
         } else {
             favoritedButton.setBackgroundImage(#imageLiteral(resourceName: "favor-icon"), for: UIControlState.normal)
             tweet.favoritesCount = tweet.favoritesCount==0 ? 0 : tweet.favoritesCount - 1
             favCountLabel.text = tweet.favoritesCount==0 ? "" : "\(tweet.favoritesCount)"
+            if (isPost) {TwitterClient.sharedInstance?.favoritesDestroy(tweet.id_str!)}
         }
     }
     
     @IBAction func onFavBtnPressed(_ sender: Any) {
-        toggleFavorited(!tweet.isFavorited)
+        toggleFavorited(!tweet.isFavorited, isPost:true)
     }
     
     override func awakeFromNib() {

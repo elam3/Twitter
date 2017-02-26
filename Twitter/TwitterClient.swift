@@ -59,6 +59,32 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    /** Mark a tweet with a "favorited" status 
+     *  https://dev.twitter.com/rest/reference/post/favorites/create
+     *  Resource URL :          https://api.twitter.com/1.1/favorites/create.json
+     *  Example RequestPOST :   https://api.twitter.com/1.1/favorites/create.json?id=243138128959913986
+     */
+    func favoritesCreate(_ id_str: String) {
+        self.post("1.1/favorites/create.json?id=" + id_str, parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
+            print("Favorited post id: " + id_str)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            print("favoritesCreate error: \(error.localizedDescription)")
+        })
+    }
+    
+    /** Mark a tweet with a "Un-favorited" status
+     *  https://dev.twitter.com/rest/reference/post/favorites/destroy
+     *  Resource URL :          https://api.twitter.com/1.1/favorites/destroy.json
+     *  Example Request : POST  https://api.twitter.com/1.1/favorites/destroy.json?id=243138128959913986
+     */
+    func favoritesDestroy(_ id_str: String) {
+        self.post("1.1/favorites/destroy.json?id=" + id_str, parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
+            print("Un-Favorited post id: " + id_str)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            print("favoritesDestroy error: \(error.localizedDescription)")
+        })
+    }
+    
     
     /** Refactor login portion between LoginViewController & AppDelegate
      *
