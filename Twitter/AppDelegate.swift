@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Set up an observer to detect logout events posted by the TweetsViewController
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "UserDidLogout"), object: nil, queue: OperationQueue.main) { (Notification) in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil, queue: OperationQueue.main) { (Notification) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewCtrlr = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = viewCtrlr

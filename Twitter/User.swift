@@ -15,6 +15,9 @@ class User: NSObject {
     var profileUrl: NSURL?
     var tagline: NSString?
     
+    // Add a static constant to replace error-prone string literal
+    static let userDidLogoutNotification = "UserDidLogout"
+    
     // serialize user data back into a JSON for persistance
     var dictionary: NSDictionary?
     
