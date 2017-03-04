@@ -117,11 +117,14 @@ class TwitterClient: BDBOAuth1SessionManager {
      *  Resource URL :          https://api.twitter.com/1.1/statuses/update.json
      *  Example Request :  POST https://api.twitter.com/1.1/statuses/update.json?status=Maybe%20he%27ll%20finally%20find%20his%20keys.%20%23peterfalk
      */
-    func statusUpdate(_ status: String) {
-        self.post("1.1/statuses/update.json?status="+status, parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
-            print("Tweet: " + status)
+    func statusUpdate(_ statusUpdate: String) {
+        let escapedStatusUpdateString = statusUpdate.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        self.post("1.1/statuses/update.json?status="+escapedStatusUpdateString, parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
+            print("Status Update: " + escapedStatusUpdateString)
+            let response:String = (task.response?.url?.absoluteString)!
+            //print("response: \(response)")
         }, failure: { (task: URLSessionDataTask?, error: Error) in
-            print("Tweet error: \(error.localizedDescription)")
+            print("Status Update error: \(error.localizedDescription)")
         })
     }
     

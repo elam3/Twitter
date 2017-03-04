@@ -434,7 +434,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="ahP-5c-f7L">
                         <rightBarButtonItems>
-                            <barButtonItem title="Tweet" id="HRT-c2-uXU"/>
+                            <barButtonItem title="Tweet" id="HRT-c2-uXU">
+                                <connections>
+                                    <action selector="onTweetButtonPressed:" destination="7YS-RZ-qXE" id="xQT-gN-qcl"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="140" style="plain" id="Zbk-YU-zjX">
                                 <color key="tintColor" red="0.63774984140000002" green="0.63774984140000002" blue="0.63774984140000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </barButtonItem>

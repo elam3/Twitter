@@ -34,6 +34,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate{
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func onTweetButtonPressed(_ sender: Any) {
+        //print("tweetTextView.text: \(tweetTextView.text!)")
+        TwitterClient.sharedInstance?.statusUpdate(tweetTextView.text!)
+    }
 
     /*
     // MARK: - Navigation
