@@ -112,6 +112,20 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     
+    /** Updates the authenticating user’s current status, also known as Tweeting.
+     *  https://dev.twitter.com/rest/reference/post/statuses/update
+     *  Resource URL :          https://api.twitter.com/1.1/statuses/update.json
+     *  Example Request :  POST https://api.twitter.com/1.1/statuses/update.json?status=Maybe%20he%27ll%20finally%20find%20his%20keys.%20%23peterfalk
+     */
+    func statusUpdate(_ status: String) {
+        self.post("1.1/statuses/update.json?status="+status, parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
+            print("Tweet: " + status)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            print("Tweet error: \(error.localizedDescription)")
+        })
+    }
+    
+    
     /** Refactor login portion between LoginViewController & AppDelegate
      *
      */
