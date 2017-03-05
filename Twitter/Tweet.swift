@@ -25,6 +25,9 @@ class Tweet: NSObject {
     var isRetweeted: Bool
     var isFavorited: Bool
     
+    var isUseProfileBgImg: Bool
+    var profileBgImgUrl: URL?
+    
     init(dictionary: [String: AnyObject]) {
         id_str = dictionary["id_str"] as? String
         text = dictionary["text"] as? String
@@ -50,7 +53,14 @@ class Tweet: NSObject {
         let myFormatter = DateFormatter()
         timestampString = dictionary["created_at"] as? String
         timestamp = myFormatter.date(from: timestampString!)
-
+        
+        isUseProfileBgImg = (dictionary["user"]?["profile_use_background_image"] as? Bool)!
+        let profileBgImgUrlString = dictionary["user"]?["profile_background_image_url_https"] as? String
+        if profileBgImgUrlString != nil {
+            profileBgImgUrl = URL(string: profileBgImgUrlString!)!
+        } else {
+            profileBgImgUrl = nil
+        }
         
     }
     

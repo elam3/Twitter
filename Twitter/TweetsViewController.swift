@@ -13,6 +13,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var tweets: [Tweet]! = []
+    var segueIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.segueIndex = indexPath.row
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -73,14 +77,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func onReplyBtnPressed(_ sender: Any) {
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "segueToTweetDetailViewCtrl" {
+            let destViewCtrl = segue.destination as! TweetDetailsViewController
+            destViewCtrl.tweet = self.tweets[self.segueIndex]
+        }
     }
-    */
 
 }
