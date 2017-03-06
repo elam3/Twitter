@@ -111,9 +111,6 @@
                                                         <constraint firstAttribute="width" constant="48" id="9Nh-GL-a4F"/>
                                                         <constraint firstAttribute="height" constant="48" id="IEz-bf-WUV"/>
                                                     </constraints>
-                                                    <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="tt6-9R-IXE" appends="YES" id="mKX-8Q-FOe"/>
-                                                    </connections>
                                                 </imageView>
                                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="The Failing SamBowne" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNF-cW-JcM">
                                                     <rect key="frame" x="60" y="8" width="136" height="15"/>
@@ -133,9 +130,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="Mh9-Og-Qfh" appends="YES" id="dSP-qx-lRQ"/>
-                                                    </connections>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7j-OQ-veq">
                                                     <rect key="frame" x="265" y="11" width="51" height="12"/>
@@ -196,8 +190,19 @@
                                                         <action selector="onReplyBtnPressed:" destination="b4B-Ga-m4W" eventType="touchUpInside" id="JGT-jg-AJd"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ije-5V-cb7">
+                                                    <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="uTi-t3-xLY"/>
+                                                        <constraint firstAttribute="width" constant="48" id="zT4-dq-jDh"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <segue destination="zdS-qf-M0X" kind="show" identifier="segueToProfileViewCtrl" id="FvX-SY-6CH"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="rNF-cW-JcM" firstAttribute="top" secondItem="ije-5V-cb7" secondAttribute="top" id="39X-Xl-e7L"/>
                                                 <constraint firstItem="Z7j-OQ-veq" firstAttribute="leading" secondItem="Hfo-aA-SP9" secondAttribute="trailing" constant="4" id="46z-hl-Qow"/>
                                                 <constraint firstAttribute="bottom" secondItem="yad-s4-9Qf" secondAttribute="bottom" constant="8" id="49j-nO-VJt"/>
                                                 <constraint firstItem="8OT-jI-cBc" firstAttribute="leading" secondItem="Ugb-7F-Ysj" secondAttribute="trailing" constant="4" id="6XS-Gd-RPd"/>
@@ -210,6 +215,7 @@
                                                 <constraint firstItem="0dT-aY-ivg" firstAttribute="top" secondItem="kJd-JU-gDG" secondAttribute="top" constant="8" id="Bw8-Z2-9vR"/>
                                                 <constraint firstItem="Hfo-aA-SP9" firstAttribute="leading" secondItem="rNF-cW-JcM" secondAttribute="trailing" constant="4" id="DfY-0V-9Dv"/>
                                                 <constraint firstItem="BbQ-Q9-P09" firstAttribute="centerY" secondItem="yad-s4-9Qf" secondAttribute="centerY" id="FJc-5v-Fjc"/>
+                                                <constraint firstItem="rNF-cW-JcM" firstAttribute="leading" secondItem="ije-5V-cb7" secondAttribute="trailing" constant="4" id="Hck-E9-tKE"/>
                                                 <constraint firstItem="rNF-cW-JcM" firstAttribute="top" secondItem="0dT-aY-ivg" secondAttribute="top" id="NJT-81-HmY"/>
                                                 <constraint firstItem="rNF-cW-JcM" firstAttribute="leading" secondItem="0dT-aY-ivg" secondAttribute="trailing" constant="4" id="S6T-8C-YQO"/>
                                                 <constraint firstItem="kDY-bg-ins" firstAttribute="leading" secondItem="rNF-cW-JcM" secondAttribute="leading" id="T28-TM-KrU"/>
@@ -219,6 +225,7 @@
                                                 <constraint firstItem="0aJ-l3-qRa" firstAttribute="leading" secondItem="BbQ-Q9-P09" secondAttribute="trailing" constant="25" id="YYK-zV-Jg9"/>
                                                 <constraint firstItem="yad-s4-9Qf" firstAttribute="leading" secondItem="kDY-bg-ins" secondAttribute="leading" id="acU-Ef-ccx"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kDY-bg-ins" secondAttribute="bottom" constant="36" id="alX-1Z-hlq"/>
+                                                <constraint firstItem="ije-5V-cb7" firstAttribute="leading" secondItem="kJd-JU-gDG" secondAttribute="leading" constant="8" id="g4R-dN-yqh"/>
                                                 <constraint firstItem="BbQ-Q9-P09" firstAttribute="leading" secondItem="yad-s4-9Qf" secondAttribute="trailing" constant="4" id="gP3-We-VkQ"/>
                                                 <constraint firstItem="0aJ-l3-qRa" firstAttribute="baseline" secondItem="yad-s4-9Qf" secondAttribute="baseline" id="he5-nK-9mw"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z7j-OQ-veq" secondAttribute="trailing" constant="8" id="jqv-Xg-tP4"/>
@@ -229,6 +236,7 @@
                                                 <constraint firstItem="8OT-jI-cBc" firstAttribute="centerY" secondItem="yad-s4-9Qf" secondAttribute="centerY" id="u6r-kL-6vA"/>
                                                 <constraint firstItem="Ugb-7F-Ysj" firstAttribute="baseline" secondItem="yad-s4-9Qf" secondAttribute="baseline" id="uNr-TL-Kqx"/>
                                                 <constraint firstItem="kDY-bg-ins" firstAttribute="leading" secondItem="0dT-aY-ivg" secondAttribute="trailing" constant="4" id="wMT-kd-hIN"/>
+                                                <constraint firstItem="ije-5V-cb7" firstAttribute="top" secondItem="kJd-JU-gDG" secondAttribute="top" constant="8" id="zKo-u6-9YF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -242,6 +250,7 @@
                                             <outlet property="screen_nameLabel" destination="Hfo-aA-SP9" id="FLM-7G-Mhy"/>
                                             <outlet property="timestampLabel" destination="Z7j-OQ-veq" id="Q52-KG-00o"/>
                                             <outlet property="tweetLabel" destination="kDY-bg-ins" id="Qos-fK-k0Y"/>
+                                            <segue destination="QnN-0Q-dP3" kind="show" identifier="segueToTweetDetailViewCtrl" id="ztw-ch-eJq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -272,16 +281,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gW-dt-sI7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Mh9-Og-Qfh">
-                    <connections>
-                        <segue destination="QnN-0Q-dP3" kind="show" identifier="segueToTweetDetailViewCtrl" id="Pno-FJ-w6J"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="tt6-9R-IXE">
-                    <connections>
-                        <segue destination="zdS-qf-M0X" kind="show" identifier="segueToProfileViewCtrl" id="mZi-mJ-dnu"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1550" y="139"/>
         </scene>

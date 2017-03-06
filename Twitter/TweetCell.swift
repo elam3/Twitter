@@ -22,6 +22,8 @@ class TweetCell: UITableViewCell {
     
     var profileImageUrlString: String?
     
+    
+    
     var tweet : Tweet! {
         didSet {
             //initialize instance data members

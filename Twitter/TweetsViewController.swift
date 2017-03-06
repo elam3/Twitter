@@ -63,6 +63,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.segueIndex = indexPath.row
+        performSegue(withIdentifier: "segueToTweetDetailViewCtrl", sender: nil)
     }
     
     override func didReceiveMemoryWarning() {
