@@ -83,6 +83,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         if segue.identifier == "segueToTweetDetailViewCtrl" {
             let destViewCtrl = segue.destination as! TweetDetailsViewController
             destViewCtrl.tweet = self.tweets[self.segueIndex]
+        } else if segue.identifier == "segueToProfileViewCtrl" {
+            let destViewCtrl = segue.destination as! ProfileViewController
+            destViewCtrl.tweet = self.tweets[self.segueIndex]
         }
     }
 
