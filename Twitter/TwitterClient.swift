@@ -129,6 +129,34 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     
+    /** Updates the authenticating user’s current status, also known as Tweeting.
+     *  https://dev.twitter.com/rest/reference/post/statuses/update
+     *  Resource URL :          https://api.twitter.com/1.1/statuses/update.json
+     *  Example Request :  POST https://api.twitter.com/1.1/statuses/update.json?status=Maybe%20he%27ll%20finally%20find%20his%20keys.%20%23peterfalk
+     */
+    func statusReply(_ statusReplyUpdate: String, id_str: String) {
+        let params = ["status": statusReplyUpdate, "in_reply_to_status_id": Int(id_str)!] as [String : Any] 
+        self.post("1.1/statuses/update.json", parameters: params, success: { (task: URLSessionDataTask, response: Any) in
+            print("Status Reply Update: ")
+            let response:String = (task.response?.url?.absoluteString)!
+            print("Status Reply Response: \(response)")
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            print("Status Reply Update error: \(error.localizedDescription)")
+            let escapedStatusUpdateString = statusReplyUpdate.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+            print("Compiled url: "+"1.1/statuses/update.json?status="+escapedStatusUpdateString+"?in_reply_to_status_id="+id_str)
+        })
+        /*let escapedStatusUpdateString = statusReplyUpdate.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        self.post("1.1/statuses/update.json?status="+escapedStatusUpdateString+"?in_reply_to_status_id="+id_str, parameters: nil, success: { (task: URLSessionDataTask, response: Any) in
+            print("Status Reply Update: " + escapedStatusUpdateString)
+            let response:String = (task.response?.url?.absoluteString)!
+            //print("response: \(response)")
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            print("Status Reply Update error: \(error.localizedDescription)")
+            print("Compiled url: "+"1.1/statuses/update.json?status="+escapedStatusUpdateString+"?in_reply_to_status_id="+id_str)
+        })*/
+    }
+    
+    
     /** Refactor login portion between LoginViewController & AppDelegate
      *
      */

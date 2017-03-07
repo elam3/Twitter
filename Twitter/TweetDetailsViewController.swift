@@ -51,6 +51,7 @@ class TweetDetailsViewController: UIViewController {
     }
     
     @IBAction func onReplyBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "segueFromTweetDetailsToCompose", sender: sender)
     }
     
     @IBAction func onRetweetBtnPressed(_ sender: Any) {
@@ -93,14 +94,12 @@ class TweetDetailsViewController: UIViewController {
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "segueFromTweetDetailsToCompose" {
+            let destViewCtrl = segue.destination as! ComposeViewController
+            destViewCtrl.isReply = true
+            destViewCtrl.tweet = self.tweet
+        }
     }
-    */
 
 }

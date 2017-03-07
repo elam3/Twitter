@@ -186,9 +186,6 @@
                                                         <constraint firstAttribute="height" constant="20" id="p0p-Fa-ke6"/>
                                                     </constraints>
                                                     <state key="normal" backgroundImage="reply-icon"/>
-                                                    <connections>
-                                                        <action selector="onReplyBtnPressed:" destination="b4B-Ga-m4W" eventType="touchUpInside" id="JGT-jg-AJd"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ije-5V-cb7">
                                                     <rect key="frame" x="8" y="8" width="48" height="48"/>
@@ -197,6 +194,7 @@
                                                         <constraint firstAttribute="width" constant="48" id="zT4-dq-jDh"/>
                                                     </constraints>
                                                     <connections>
+                                                        <action selector="onProfileImgPressed:" destination="b4B-Ga-m4W" eventType="touchUpInside" id="sdK-GS-oqo"/>
                                                         <segue destination="zdS-qf-M0X" kind="show" identifier="segueToProfileViewCtrl" id="FvX-SY-6CH"/>
                                                     </connections>
                                                 </button>
@@ -243,6 +241,7 @@
                                             <outlet property="favCountLabel" destination="8OT-jI-cBc" id="tbN-ik-oYw"/>
                                             <outlet property="favoritedButton" destination="Ugb-7F-Ysj" id="dsm-EB-b6r"/>
                                             <outlet property="nameLabel" destination="rNF-cW-JcM" id="SJN-Z9-Sn6"/>
+                                            <outlet property="profileImageBtn" destination="ije-5V-cb7" id="NGK-Lc-XiR"/>
                                             <outlet property="profileImageView" destination="0dT-aY-ivg" id="HXs-1O-Rxg"/>
                                             <outlet property="replyCountLabel" destination="BbQ-Q9-P09" id="2F2-uj-20Q"/>
                                             <outlet property="retweetCountLabel" destination="s1y-b4-Dki" id="N5j-Vt-hc6"/>
@@ -297,51 +296,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Dne-py-yf4">
-                                <rect key="frame" x="16" y="74" width="48" height="48"/>
+                                <rect key="frame" x="16" y="118" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="AeK-VS-GH5"/>
                                     <constraint firstAttribute="width" constant="48" id="RnO-ow-6t1"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="The Failing SamBowne" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWc-ys-naF">
-                                <rect key="frame" x="72" y="74" width="135.5" height="14.5"/>
+                                <rect key="frame" x="72" y="118" width="135.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="@sambowne" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qm-kx-7Hi">
-                                <rect key="frame" x="72" y="96" width="61" height="12"/>
+                                <rect key="frame" x="72" y="140" width="61" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.63915330169999995" green="0.63926076890000005" blue="0.63913047310000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Database Ransom Attacks Have Now Hit MySQL Servers" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxK-cj-wnd">
-                                <rect key="frame" x="16" y="144" width="318.5" height="14.5"/>
+                                <rect key="frame" x="16" y="188" width="318.5" height="14.5"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jv3-AP-oAh">
-                                <rect key="frame" x="16" y="185" width="51" height="12"/>
+                                <rect key="frame" x="16" y="229" width="51" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.63774984140000002" green="0.63774984140000002" blue="0.63774984140000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZW-Eg-sUa">
-                                <rect key="frame" x="16" y="247" width="19.5" height="12"/>
+                                <rect key="frame" x="16" y="291" width="19.5" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ce-0r-NNO">
-                                <rect key="frame" x="121.5" y="247" width="19.5" height="12"/>
+                                <rect key="frame" x="121.5" y="291" width="19.5" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="KUA-j1-bTu">
-                                <rect key="frame" x="16" y="275" width="343" height="30"/>
+                                <rect key="frame" x="16" y="319" width="343" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGG-He-8IV">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -352,6 +351,7 @@
                                         <state key="normal" backgroundImage="reply-icon"/>
                                         <connections>
                                             <action selector="onReplyBtnPressed:" destination="QnN-0Q-dP3" eventType="touchUpInside" id="lkb-j0-iBx"/>
+                                            <segue destination="7YS-RZ-qXE" kind="show" identifier="segueFromTweetDetailsToCompose" id="72z-6O-agQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NA-5V-HhP">
@@ -393,13 +393,13 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RETWEETS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pj-0B-u6z">
-                                <rect key="frame" x="43.5" y="247" width="54.5" height="12"/>
+                                <rect key="frame" x="43.5" y="291" width="54.5" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.63915330169999995" green="0.63926076890000005" blue="0.63913047310000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIKES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bM-MI-oKM">
-                                <rect key="frame" x="148.5" y="247" width="28" height="12"/>
+                                <rect key="frame" x="148.5" y="291" width="28" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.63915330169999995" green="0.63926076890000005" blue="0.63913047310000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -506,6 +506,9 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="nameLabel" destination="pkj-hw-SiI" id="Qeh-1I-DWu"/>
+                        <outlet property="profileImageView" destination="Vqt-Lu-YcE" id="CAC-5e-FXw"/>
+                        <outlet property="screen_nameLabel" destination="J1t-2A-nPQ" id="GGv-hq-eMb"/>
                         <outlet property="tweetCharLimitButton" destination="Zbk-YU-zjX" id="QPN-0d-7TO"/>
                         <outlet property="tweetTextView" destination="0KU-De-3pG" id="eX7-Bc-6HD"/>
                     </connections>
@@ -714,4 +717,7 @@
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="72z-6O-agQ"/>
+    </inferredMetricsTieBreakers>
 </document>

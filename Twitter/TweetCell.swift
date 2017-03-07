@@ -22,6 +22,7 @@ class TweetCell: UITableViewCell {
     
     var profileImageUrlString: String?
     
+    @IBOutlet weak var profileImageBtn: UIButton!
     
     
     var tweet : Tweet! {

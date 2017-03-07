@@ -58,6 +58,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         cell.tweet = tweets[indexPath.row]
+        
+        cell.profileImageBtn.tag = indexPath.row
+        cell.profileImageBtn.addTarget(self, action: #selector(TweetsViewController.onProfileImgPressed(_:)), for: UIControlEvents.touchUpInside)
+        
         return cell
     }
     
@@ -75,8 +79,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         TwitterClient.sharedInstance?.logout()
     }
     
-    @IBAction func onReplyBtnPressed(_ sender: Any) {
+    @IBAction func onProfileImgPressed(_ sender: UIButton) {
+        self.segueIndex = sender.tag
+        performSegue(withIdentifier: "segueToProfileViewCtrl", sender: nil)
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
